@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训2017-14JS</title>
+</head>
+<body>
+<!--只要是有template 将app全部替换-->
+<div id="app">
+   {{a}}
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+</div>
+<!--如果写在这里必须使用template标签 只有这样vue才认识-->
+<template id="temp1">
+    <div>
+        <div>珠峰</div>
+        <div>培训</div>
+        <div>2018</div>
+        <div>2-6</div>
+    </div>
+</template>
+
+<!--
+vue定义的组件 vue给他赋予特殊意义的标签
+template
+transition
+transition-group
+slot  插槽
+-->
+</body>
+</html>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    //创建一个vue实例经历的几个阶段
+    //生命周期函数必须记住,this都是当前实例
+    /*
+    * beforeCreate   created
+    * beforeMount    mounted
+    * beforeUpdate   updated
+    * beforeDestroy  destroyed
+    * */
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            a:"珠峰培训"
+        },
+        //Component template requires a root element, rather than just text.
+        //template必须需要一个标签包起来,不可以只有文本
+        //根元素必须只有一个 如果有多个使用一个元素包起来,或者是有v-if这种形式(只显示一个根元素)
+        //template:"<div><div>珠峰培训</div><div>2018-2-6</div></div>",
+        //template:"#temp1",
+        //有了这个属性会将app替换成这个的值
+        beforeCreate(){
+            //生命周期开始
+            //初始化一些事件 一般没啥用
+            //console.log(this);
+            //this.$data;undefined  数据还没初始化,实例上只有一些方法$XX
+            debugger;
+        },
+        created(){
+            // 数据初始化完成,可以获取到数据了,
+            // ajax请求数据也一般放这里进行
+            //这个阶段页面还没有渲染
+            //console.log(this);
+            debugger;
+        },
+        beforeMount(){
+            //在挂载之前会判断一下渲染模板有没错误
+            //挂载之前  实际项目中没有什么太大意义
+            debugger;
+        },
+        mounted(){
+            //挂载完成 当前组件(el中的内容)渲染
+            //操作DOM
+            debugger;
+        },
+        //beforeUpdate 和updated在实际开发中一般使用watch监控数据变化
+        beforeUpdate(){
+            //数据更新之前
+            debugger;
+        },
+        updated(){
+            //数据跟新完成
+            debugger;
+        },
+        beforeDestroy(){
+            debugger;
+        },
+        destroyed(){
+            debugger;
+        }
+    });
+    //挂载
+    //vm.$mount("#app");//上面el:"#app"
+     vm.$destroy();//销毁实例
+
+    // 销毁之后有页面已经渲染完成不会没有东西了,但是数据已经改变不了了
+</script>
